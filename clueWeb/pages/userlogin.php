@@ -27,14 +27,16 @@
              echo 0;
          else
          {   
-         $result = mysql_query("SELECT password FROM  users where username='".$username."'");
+         $result = mysql_query("SELECT password FROM  clueUsers where username='$username'");
             
          $row=mysql_fetch_array($result);
          $pass=$row['password'];
          
-         $result = mysql_query("UPDATE users set devstatus='1' where  username='$username'" );
          if(strcmp($pass,$password)==0)
-                 echo 1;
+			{                 
+				echo 1;
+				$result = mysql_query("UPDATE clueUsers set devstatus='1' where  username='$username'" );
+			}
          else 
                  echo 0;
          }

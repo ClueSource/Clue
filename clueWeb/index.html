@@ -22,7 +22,7 @@
         {
             var now = new Date();
             var time = now.getTime();
-            time += 3600 * 1000;
+            time += 3600 * 24 * 7;
             now.setTime(time);
             document.cookie ='username=' + value + '; expires=' + now.toUTCString() + '; path=/';
             
@@ -105,7 +105,7 @@
                              </span>
                              <input type="button" class="btn btn-info " id="signinButton" onclick="signinValidation()" value="Sign in"/>
                              <br/>
-                             <a href="./pages/registration.php"><div class="btn btn-link " >New User? Sign Up</div></a>
+                             <a href="./pages/registration.html"><div class="btn btn-link " >New User? Sign Up</div></a>
                              
                              
                          </div>
@@ -117,7 +117,6 @@
         </div>
       </div>
     </div>
-
 <div class="pagecontainer">
 <div class="hero-unit">
   <div class="container">
@@ -317,7 +316,7 @@
 		This is a free software. You can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation.<br>Code hosted
-		by <a href="https://github.com/#">Github</a>. 
+		by <a href="https://github.com/ClueSource/Clue.git">Github</a>. 
 	      </div>
 	    </div>
 	  </div>

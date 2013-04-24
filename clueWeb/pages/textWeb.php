@@ -36,6 +36,12 @@
 ?>
 <?php
 	$val = $_REQUEST['txtweb-message'];
+	parse_str($val,$out);
+	$devid = $out['user'];
+	$lat = $out['lat'];
+	$lon = $out['lon'];
+	$alt = $out['alt'];
+	$spd = $out['spd'];
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -49,10 +55,9 @@
 <body>
 
 <?php 
-
-		$result=mysql_query("INSERT INTO data
-				VALUES ('$val')",$connection);
-
+		
+		mysql_query("INSERT INTO $devid (latitude, longitude, altitude, speed) VALUES ('$lat','$lon','$alt','$spd')");
+		mysql_query("UPDATE current SET latitude='$lat', longitude='$lon', altitude='$alt', speed='$spd' where username='$devid'");
 		/*if ($result)
 		{
 			echo "<script type=\"text/javascript\">alert(\"Entry added successfully.\"); </script>";

@@ -429,10 +429,9 @@ _END;
 								foreach($followers3 as $friend)
 								{
 						
-
-					echo "<li class=\"span2  alert-success  \">";
-               echo  "<a href='./map.php?name=$friend' class='thumbnail' style='text-decoration: none; color: black; text-align: center;'>";
 echo <<<_END
+					<li class="span2  alert-success  ">
+                    <a href='./map.php?name=$friend' class="thumbnail" style="text-decoration: none; color: black; text-align: center;">
                     <img data-src="holder.js/300x200" alt="">
                      <h4>$friend</h4>
                     <p>Active</p>

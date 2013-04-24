@@ -21,11 +21,23 @@
           
           
 	 $username=$_POST['user'];
-         $result = mysql_query("SELECT name FROM  clueUsers where username='$username'");
+         $password=$_POST['pass'];
+         //echo ("Hello". $username.$password);
+         if($username==null ||$password==null)
+             echo 0;
+         else
+         {   
+         $result = mysql_query("SELECT password FROM  users where username='".$username."'");
+            
          $row=mysql_fetch_array($result);
-         $pass=$row['name'];
-         echo $pass;
-        
+         $pass=$row['password'];
+         
+         $result = mysql_query("UPDATE users set devstatus='1' where  username='$username'" );
+         if(strcmp($pass,$password)==0)
+                 echo 1;
+         else 
+                 echo 0;
+         }
          
           ?>
 

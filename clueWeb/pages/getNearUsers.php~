@@ -1,0 +1,103 @@
+<?php
+	require_once './databaseConstants.php';
+
+ 
+	// 1. Create a database connection
+	$connection = mysql_connect(DB_HOST,DB_USERNAME,DB_PASSWORD);
+	if (!$connection)
+	{
+		die("Database connection failed: " . mysql_error());
+	}
+	
+	// 2. Select a database to use 
+	$db_select = mysql_select_db(DB_NAME,$connection);
+	if (!$db_select)
+	{
+		die("Database selection failed: " . mysql_error());
+	}
+?>
+
+          <?php
+          	$user = $_GET['username'];
+				$xml="<clueUsers>\n\t\t";
+        		$count=1;
+        		
+							
+							$query = "SELECT * FROM current WHERE username='$user'";
+							$result = mysql_query($query);
+							
+							$row = mysql_fetch_row($result); 
+							$lat1 = $row[1];
+							$lon1	= $row[2];
+							
+							$query = "SELECT * FROM current WHERE username<>'$user'";
+							$result = mysql_query($query); 
+							$num    = mysql_num_rows($result);
+							for ($j = 0 ; $j < $num ; ++$j)
+							{
+								$row = mysql_fetch_row($result);
+								$lat2 = $row[1];
+								$lon2 = $row[2];
+								
+							
+							
+							 $R = 6371; // km
+							$dLat = ($lat2-$lat1).toRad();
+							$dLon = ($lon2-$lon1).toRad();
+							$latt1 = $lat1.toRad();
+							$lat2 = $lat2.toRad();
+
+							$a = Math.sin($dLat/2) * Math.sin($dLat/2) + Math.sin($dLon/2) * Math.sin($dLon/2) * Math.cos($latt1) * Math.cos($lat2); 
+							$c = 2 * Math.atan2(Math.sqrt($a), Math.sqrt(1-$a)); 
+							$d = $R * $c;						
+							
+							}
+							if (sizeof($followers))
+							{
+								
+								foreach($followers as $friend)
+								{
+									$query = "SELECT * FROM current WHERE username='$friend'";
+									$result = mysql_query($query);
+									$row = mysql_fetch_row($result);
+									$xml .="<user>\n\t\t";
+            					$xml .= "<slno>".$count++."</slno>\n\t\t";
+            					$xml .= "<username>".$friend."</username>\n\t\t";
+            					$xml .= "<latitude>".$row[1]."</latitude>\n\t\t";
+            					$xml .= "<longitude>".$row[2]."</longitude>\n\t\t";
+            					$xml.="</user>\n\t";
+				
+								}			
+							
+							}
+							if (sizeof($followers2))
+							{
+			
+								foreach($followers2 as $friend)
+								{
+									$query = "SELECT * FROM clueUsers WHERE username='$friend'";
+									$result = mysql_query($query);
+									$row = mysql_fetch_row($result);
+									$xml .="<user>\n\t\t";
+            					$xml .= "<slno>".$count++."</slno>\n\t\t";
+            					$xml .= "<username>".$friend."</username>\n\t\t";
+            					$xml .= "<latitude>".$row[1]."</latitude>\n\t\t";
+            					$xml .= "<longitude>".$row[2]."</longitude>\n\t\t";
+            					$xml.="</user>\n\t";
+								}			
+		
+							}
+				 
+        $xml.="</clueUsers>\n\r";
+        $xmlobj=new SimpleXMLElement($xml);
+        $xmlobj->asXML($user."_db.xml");
+        echo $user."_db.xml created";
+
+            
+          ?>
+
+ 
+<?php
+	// 5. Close connection
+	mysql_close($connection);
+?>

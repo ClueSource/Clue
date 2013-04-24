@@ -1,23 +1,25 @@
 <?php
 	
-	/* define("DB_HOST", "localhost");
-  	define("DB_USERNAME", "root");
-  	define("DB_PASSWORD", "");
-  	define("DB_NAME", "sensorData");*/
-	
 	define("DB_HOST", "sql112.0fees.net");
   	define("DB_USERNAME", "fees0_12215311");
   	define("DB_PASSWORD", "password");
   	define("DB_NAME", "fees0_12215311_sensorData");
 	
-  	date_default_timezone_set('Asia/Kolkata');
+	/*  
 	
-	/* define("DB_HOST", "localhost");
+	define("DB_HOST", "localhost");
+  	define("DB_USERNAME", "root");
+  	define("DB_PASSWORD", "");
+  	define("DB_NAME", "sensorData");
+	
+	  define("DB_HOST", "localhost");
 	  define("DB_USERNAME", "njavalli");
 	  define("DB_PASSWORD", "D7u0efAf7r");
-	  define("DB_NAME", "njavalli_mainSite");*/
-	  
+	  define("DB_NAME", "njavalli_mainSite");
+	*/  
 	  date_default_timezone_set('Asia/Kolkata');
+
+ 
 	// 1. Create a database connection
 	$connection = mysql_connect(DB_HOST,DB_USERNAME,DB_PASSWORD);
 	if (!$connection)
@@ -33,14 +35,8 @@
 	}
 ?>
 <?php
-	 
-	 $devid=$_POST['devid'];
-	 $lat=$_POST['lat'];
-	 $lon=$_POST['lon'];
-	 $alt=$_POST['alt'];
-	 $spd=$_POST['spd'];
-	 $time=$_POST['time'];
-	 
+	$val = $_REQUEST['txtweb-message'];
+	parse_str($val,$out);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,18 +44,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Adding to database</title>
+<meta name='txtweb-appkey' content='9e053bdd-6768-4bf1-8302-55300059fdb2' />
 </head>
 
 <body>
 
-
-
 <?php 
-
 		
-		mysql_query("INSERT INTO $devid (latitude, longitude, altitude, speed) VALUES ('$lat','$lon','$alt','$spd')");
-		mysql_query("UPDATE current SET latitude='$lat', longitude='$lon', altitude='$alt', speed='$spd' where username='$devid'"); 
-	
+		$result=mysql_query("INSERT INTO data VALUES ('$val')");
+
+		/*if ($result)
+		{
+			echo "<script type=\"text/javascript\">alert(\"Entry added successfully.\"); </script>";
+		}
+		else
+		{
+			echo "<script type=\"text/javascript\">alert(\"Failed to add entry! Try again.\"); </script>";
+		}*/
 ?>
 </body>
 </html>

@@ -18,16 +18,20 @@
 ?>
 
           <?php
-            $result = mysql_query("SELECT * FROM  `mobile` ORDER BY  `slno` DESC LIMIT 0 , 1");
-            $row=mysql_fetch_array($result);
+          	$view = $_GET['name'];
+
+				$result = mysql_query("SELECT * FROM  current WHERE username = '$view'");
+            $row=mysql_fetch_row($result);
          
-            $lat=$row['latitude'];
-            $lon=$row['longitude'];
-            $alt=$row['altitude'];
-            $spd=$row['speed'];
-            $time=$row['time'];
-            //echo $alt;
-            echo "var value=[".$lat.",".$lon.",".$alt.",".$spd.",".$time."];";
+            $lat=$row[1];
+            $lon=$row[2];
+            $alt=$row[3];
+            $spd=$row[4];
+            $time=$row[5];
+            echo <<<_END
+            var value=["$lat","$lon","$alt","$spd","$time"]
+_END;
+            
           ?>
 
  

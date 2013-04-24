@@ -21,7 +21,7 @@
           
           
 	 $username=$_POST['user'];
-         $result = mysql_query("SELECT name FROM  clueUsers where username='$username'");
+         $result = mysql_query("SELECT name FROM  users where username='".$username."'");
          $row=mysql_fetch_array($result);
          $pass=$row['name'];
          echo $pass;

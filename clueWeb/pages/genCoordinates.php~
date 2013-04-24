@@ -18,17 +18,17 @@
 ?>
 
           <?php
-          
-          
-	 $username=$_POST['user'];
-         $result = mysql_query("SELECT name FROM  clueUsers where username='$username'");
-         $row=mysql_fetch_array($result);
-         $pass=$row['name'];
-         echo $pass;
-        
+            $result = mysql_query("SELECT * FROM  `mobile` ORDER BY  `slno` DESC LIMIT 0 , 1");
+            $row=mysql_fetch_array($result);
          
+            $lat=$row['latitude'];
+            $lon=$row['longitude'];
+            $alt=$row['altitude'];
+            $spd=$row['speed'];
+            $time=$row['time'];
+            //echo $alt;
+            echo "var value=[".$lat.",".$lon.",".$alt.",".$spd.",".$time."];";
           ?>
-
 
  
 <?php

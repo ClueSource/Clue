@@ -57,9 +57,17 @@
 <?php 
 
 		
-		mysql_query("INSERT INTO $devid (latitude, longitude, altitude, speed) VALUES ('$lat','$lon','$alt','$spd')");
-		mysql_query("UPDATE current SET latitude='$lat', longitude='$lon', altitude='$alt', speed='$spd' where username='$devid'"); 
-	
+		$result=mysql_query("INSERT INTO mobile
+				VALUES ('','$devid','$lat','$lon','$alt','$spd','$time')",$connection);
+
+		/*if ($result)
+		{
+			echo "<script type=\"text/javascript\">alert(\"Entry added successfully.\"); </script>";
+		}
+		else
+		{
+			echo "<script type=\"text/javascript\">alert(\"Failed to add entry! Try again.\"); </script>";
+		}*/
 ?>
 </body>
 </html>

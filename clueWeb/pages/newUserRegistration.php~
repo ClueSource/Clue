@@ -31,7 +31,7 @@
          
           //mysql_query("create table $username(slno int primary key auto_increment , latitude varchar(20), longitude varchar(20), altitude varchar(20), speed varchar(20), time varchar(20) );");
           
-			mysql_query("CREATE TABLE $username (sl INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,latitude VARCHAR(20),longitude VARCHAR(20),altitude VARCHAR(20),speed VARCHAR(20),timeStamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)");
+			mysql_query("CREATE TABLE $username (sl INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,latitude VARCHAR(20),longitude VARCHAR(20),altitude VARCHAR(20),speed VARCHAR(20),timeStamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
           
          mysql_query("INSERT INTO current (username, latitude, longitude, altitude, speed) VALUES ('$username',0,0,0,0)");
  

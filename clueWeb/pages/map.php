@@ -15,6 +15,14 @@
 	{
 		die("Database selection failed: " . mysql_error());
 	}
+	$view = $_GET['name'];
+	$query = "SELECT * FROM clueUsers WHERE username='$view'";
+						$result = mysql_query($query);
+						$row  = mysql_fetch_row($result);
+						$name = $row[1];
+						$email = $row[3];
+						$phone= $row[4];
+						$interest = $row[5];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +80,12 @@
             time=value[4];
             }
           }
-        xmlhttp.open("GET","genCoordinates.php",true);
+<?php
+			
+echo <<<_END
+        xmlhttp.open("GET","genCoordinates.php?name=$view",true);
+_END;
+?>
         xmlhttp.send();
         }
         function setVal()
@@ -148,7 +161,9 @@
 
   <section id="about">
     <div class="page-header">
-      <h2>$Username</h2>
+<?php    
+     echo "<h2>$name</h2>";
+?>    
     </div>
     <div class="well ">
       <div class="row-fluid ">
@@ -181,18 +196,23 @@
                  </div>
                  <div class="tab-pane" id="profile" style="height:443px;">
                     <table class="table table-hover" >
+<?php
+					
+echo <<<_END
                         <tr>
-                            <td>Name: </td><td>Joseph</td>
+                            <td>Name: </td><td>$name</td>
                         </tr>
                         <tr>
-                            <td>Address: </td><td>Pala</td>
+                            <td>Email: </td><td>$email</td>
                         </tr>
                         <tr>
-                            <td>Mobile No: </td><td>9124354353</td>
+                            <td>Mobile No: </td><td>$phone</td>
                         </tr>
                         <tr>
-                            <td>Topics of interest: </td><td>Web weaving</td>
+                            <td>Topics of interest: </td><td>$interest</td>
                         </tr>
+_END;
+?>
                     </table>
                  </div>
                </div>

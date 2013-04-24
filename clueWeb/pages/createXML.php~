@@ -150,7 +150,7 @@
         $xmlobj->asXML($friendid.".xml");
         echo $friendid.".xml created"; 
         
-        header("Location:./userPage.php");
+        //header("Location:./userPage.php");
           ?>
 
 

@@ -2,8 +2,8 @@
 	
 	define("DB_HOST", "localhost");
   	define("DB_USERNAME", "root");
-  	define("DB_PASSWORD", "");
-  	define("DB_NAME", "sensorData");
+  	define("DB_PASSWORD", "amj");
+  	define("DB_NAME", "clue");
   	
 	
 /*

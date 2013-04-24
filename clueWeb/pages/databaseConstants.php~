@@ -5,12 +5,6 @@
   	define("DB_PASSWORD", "");
   	define("DB_NAME", "sensorData");
   	
-	define("DB_HOST", "sql112.0fees.net");
-  	define("DB_USERNAME", "fees0_12215311");
-  	define("DB_PASSWORD", "password");
-  	define("DB_NAME", "fees0_12215311_sensorData");
-  	
-	
 	
 /*
 
