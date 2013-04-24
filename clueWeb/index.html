@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Clue: The Open Source Tracking System</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    
+    <link href="./style/bootstrap.css" rel="stylesheet">
+    <link href="./style/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./style/style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+         var username= null;
+         var pass= null;
+         var returnValue=null;
+         function resetColor()
+         {
+             document.getElementById("displayType").setAttribute("class","control-group info");
+         }
+         function setCookie(value)
+        {
+            var now = new Date();
+            var time = now.getTime();
+            time += 3600 * 24 * 7;
+            now.setTime(time);
+            document.cookie ='username=' + value + '; expires=' + now.toUTCString() + '; path=/';
+            
+        }
+        
+        function signinValidation()
+        {
+            username= document.getElementById("inputUsername").value;
+            pass= document.getElementById("inputPass").value;
+            
+            loadXMLDoc();
+            //document.getElementById("displayType").setAttribute("class","control-group error");
+        }
+        
+        function loadXMLDoc()
+        {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+          }
+        else
+          {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+        xmlhttp.onreadystatechange=function()
+          {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+             returnValue=xmlhttp.responseText;
+             
+             if(returnValue==1)
+                 {
+                 setCookie(username);
+                 window.location="./pages/userPage.php";
+                 }
+             else
+                 document.getElementById("displayType").setAttribute("class","control-group error");
+            }
+          }
+          xmlhttp.open("POST","./pages/userlogin.php",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.send("user="+username+"&pass="+pass);
+        }
+    </script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+<!--         <div class="pull-right">-->
+	    <a class="brand" href="#">Clue!	</a>
+<!--	  </div>-->
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class=""><a href="#">Get Started</a></li>
+              <li class=""><a href="#">Hardware</a></li>
+              <li class=""><a href="#">Download</a></li>
+              <li class=""><a href="#">Resources</a></li>
+              <li class=""><a href="#">Contact</a></li>
+            </ul>
+            <div class="dropdown pull-right">
+                <a class="dropdown-toggle btn btn-primary" id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
+                  Sign in
+                </a>
+                 <div  class="dropdown-menu span3" role="menu" aria-labelledby="dLabel">
+                        <form>
+                         <div style="text-align: center;" >
+                             <br/>
+                             <span class="control-group info" id="displayType">
+                                 <input type="text" id="inputUsername" onclick="resetColor()" placeholder="Username">
+                             <input type="password" id="inputPass" onclick="resetColor()" class="inputError" placeholder="Password"><br/>
+                             </span>
+                             <input type="button" class="btn btn-info " id="signinButton" onclick="signinValidation()" value="Sign in"/>
+                             <br/>
+                             <a href="./pages/registration.html"><div class="btn btn-link " >New User? Sign Up</div></a>
+                             
+                             
+                         </div>
+
+                       </form>
+                 </div>
+            </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+<div class="pagecontainer">
+<div class="hero-unit">
+  <div class="container">
+      <span id="myDiv"></span>
+    <div class="row">
+      <header class="jumbotron centered">
+	<h1>Clue!</h1>
+      </header>
+
+      <div class="span8 offset2">
+	<p>
+	  The Open Source Tracking Solution
+	</p>
+	<p>
+	  <a href="#" class="btn btn-large btn-success">Read more »</a>
+	  <a href="#" class="btn btn-large btn-primary">Get started »</a>
+	</p>
+      </div>
+      <div class="span8 offset2">
+        <div class="well">
+        <span class="label label-important">News ticker</span><br><i><br>
+        	Clue version 0.0.11 is out.
+        </i>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="container">
+
+  <section id="about">
+    <div class="page-header">
+      <h1>About Clue!</h1>
+      <p>
+	Clue is the open source solution for the Internet of
+	Things
+      </p>
+    </div>
+    <div class="well">
+      <div class="row-fluid">
+	<div class="span4">
+	  <h2>What is Clue?</h2>
+	  <p>
+	    Clue is an open source solution for the Internet of
+	    Things. Clue allows tiny, battery-operated
+	    low-power systems communicate with the Internet.
+	  </p>
+	</div>
+	<div class="span4">
+	  <h2>Where is Clue! used?</h2>
+	  <p>
+	    Clue can be used in a wide variety of systems such as city
+	    traffic monitoring, street lights, networked electrical power
+	    meters, industrial monitoring, radiation monitoring,
+	    construction site monitoring, alarm systems, and remote house
+	    monitoring.
+	  </p>
+	</div>
+	<div class="span4">
+	  <h2>What is the Internet of Things?</h2>
+	  <p>
+	    The Internet of Things is catchphrase for a collection of
+	    technologies that make it possible to connect things like
+	    sensors and actuators to the Internet, thereby allowing the
+	    physical world to be accessed through software.
+	    
+	  </p>
+	</div>
+      </div>
+    </div>
+
+    <!--<div class="page-header">
+      <h1>Why Choose Clue?</h1>
+    </div>
+    <div class="row">
+      <div class="span12">
+	<div class="row">
+	  <div class="span4">
+	    <h2>Internet Standards</h2>
+	    <p>
+	      Clue provides powerful low-power Internet communication.
+	      Clue supports fully standard IPv6 and IPv4, along with the
+	      recent low-power wireless standards: 6lowpan, RPL, CoAP. With
+	      Clue's ClueMAC and sleepy routers, even wireless routers
+	      can be battery-operated.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/about.html">Clue features
+		»</a>
+	    </p>
+	  </div>
+	  <div class="span4">
+	    <h2>Rapid Development</h2>
+	    <p>
+	      With Clue, development is easy and fast: Clue
+	      applications are written in standard C, with the Cooja
+	      simulator Clue networks can be emulated before burned into
+	      hardware, and Instant Clue provides an entire development
+	      environment in a single download.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/start.html">Clue development introduction
+		»</a>
+	    </p>
+	  </div>
+
+	  <div class="span4">
+	    <h2>A Selection of Hardware</h2>
+	    <p>
+	      Clue runs on a range of low-power wireless devices, many of
+	      which can be easily purchased online.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/hardware.html">Clue platforms
+		»</a>
+	    </p>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="span4">
+	    <h2>Active Community</h2>
+	    <p>
+	      Clue is developed by
+		a <a href="http://www.Clue-os.org/community.html">world-wide team of
+		developers</a> with contributions from Atmel, Cisco,
+		ETH, Redwire LLC, SAP, SICS, Thingsquare, and many
+		others, led by <a href="http://dunkels.com/adam/">Adam
+		Dunkels</a>
+		of <a href="http://thingsquare.com/">Thingsquare</a>.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/community.html">Clue community
+		»</a>
+	    </p>
+	  </div>
+
+	  <div class="span4">
+	    <h2>Open Source Software</h2>
+	    <p>
+	      Clue is open source software: Clue can be freely used
+	      both in commercial and non-commercial systems and the full
+	      source code is available.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/license.html">Clue open source license
+		»</a>
+	    </p>
+	  </div>
+
+	  <div class="span4">
+	    <h2>Clue Support</h2>
+	    <p>
+	      Community support for Clue is available through
+	      the <a href="http://www.Clue-os.org/community.html">Clue developer
+		community</a>. For commercial support options, you might
+	      want to talk to
+	      <a href="http://thingsquare.com/">Thingsquare</a>.
+	    </p>
+	    <p>
+	      <a href="http://www.Clue-os.org/support.html">Clue resources
+		»</a>
+	    </p>
+	  </div>
+	</div>
+      </div>
+    </div>
+-->
+  </section>
+
+
+
+  <section id="next">
+    <div class="page-header">
+      <h1>Try out Clue yourself!</h1>
+    </div>
+    <div class="row">
+      <div class="span4 offset4">
+	<p style="text-align: center;"><a href="#" class="btn btn-large
+								   btn-success">Get started
+	    with Clue »</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+</div>
+
+ <!-- /container -->
+
+    <footer >
+	<div class="container">
+	  <div class="row">
+	    <div class="span12">
+	      <div id="copyrightext">
+		This is a free software. You can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation.<br>Code hosted
+		by <a href="https://github.com/ClueSource/Clue.git">Github</a>. 
+	      </div>
+	    </div>
+	  </div>
+
+
+      </footer>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script type="text/javascript">
+      $("[rel=tooltip]").tooltip();
+      $("[rel=popover]").popover();
+      $(".carousel").carousel({
+      interval: 4000
+      });
+    </script>
+
+</body>
+</html>
