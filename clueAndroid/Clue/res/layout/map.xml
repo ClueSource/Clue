@@ -1,0 +1,14 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+	<com.google.android.maps.MapView
+	    android:id="@+id/mapView"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:apiKey="0LxpCGJh5R_wuhMmUGYLXV600muNhDqJc_uD3lw"
+	    android:clickable="true"
+	    android:enabled="true" />
+
+    </LinearLayout>
